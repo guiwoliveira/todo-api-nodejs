@@ -1,6 +1,5 @@
-import { DatabaseMemory } from "../data/taskData.js";
-
-const database = new DatabaseMemory();
+import { TaskDynamo } from "../data/taskDynamo.js";
+const database = new TaskDynamo();
 
 export class TaskController {
 

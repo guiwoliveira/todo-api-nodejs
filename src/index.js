@@ -1,8 +1,8 @@
 import express from "express";
 import { TaskController } from "./controllers/taskController.js";
 
-const app = express()
-app.use(express.json())
+const app = express();
+app.use(express.json());
 
 // Health check
 app.get("/", (req, res) => {
@@ -19,4 +19,4 @@ app.post("/api/tasks", TaskController.create);
 app.put("/api/tasks/:id", TaskController.update);
 app.delete("/api/tasks/:id", TaskController.delete);
 
-app.listen(3000)
+app.listen(3000);
