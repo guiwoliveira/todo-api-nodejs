@@ -22,6 +22,18 @@ Resources:
         - AttributeName: id
           KeyType: HASH
 
+  HealthCheckFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/functions/healthCheck.handler
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /api/health
+            Method: get
+
   CreateTaskFunction:
     Type: AWS::Serverless::Function
     Properties:
