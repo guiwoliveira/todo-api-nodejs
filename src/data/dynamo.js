@@ -1,19 +1,12 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import {
-  DynamoDBDocumentClient,
-  PutCommand,
-  GetCommand,
-  ScanCommand,
-  UpdateCommand,
-  DeleteCommand,
-} from "@aws-sdk/lib-dynamodb";
-import { randomUUID } from "node:crypto";
+import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
-const client = new DynamoDBClient({ region: "us-east-1" });
+const client = new DynamoDBClient({
+  region: "us-east-1"
+});
 
-const db = DynamoDBDocumentClient.from(client);
-
-const TABLE_NAME = "Tasks";
+export const dynamo = DynamoDBDocumentClient.from(client);
+export const TABLE = "Tasks";
 
 export class TaskDynamo {
 

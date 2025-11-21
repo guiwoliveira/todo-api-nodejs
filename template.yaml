@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: TODO API Serverless using AWS Lambda + DynamoDB
+
+Globals:
+  Function:
+    Timeout: 10
+    Runtime: nodejs20.x
+    Handler: index.handler
+    MemorySize: 256
+
+Resources:
+  TasksTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: Tasks
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+
+  CreateTaskFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/functions/createTask.handler
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: Tasks
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /api/tasks
+            Method: post
