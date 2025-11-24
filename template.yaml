@@ -78,3 +78,18 @@ Resources:
           Properties:
             Path: /api/tasks
             Method: post
+            
+  UpdateTaskFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/functions/updateTask.handler
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: Tasks
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /api/tasks/{id}
+            Method: put
