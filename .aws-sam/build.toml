@@ -7,6 +7,6 @@ architecture = "x86_64"
 handler = "createTask.handler"
 manifest_hash = ""
 packagetype = "Zip"
-functions = ["CreateTaskFunction"]
+functions = ["HealthCheckFunction", "ListTasksFunction", "GetTaskFunction", "CreateTaskFunction", "UpdateTaskFunction", "DeleteTaskFunction"]
 
 [layer_build_definitions]

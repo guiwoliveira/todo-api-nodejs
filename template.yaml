@@ -93,3 +93,18 @@ Resources:
           Properties:
             Path: /api/tasks/{id}
             Method: put
+            
+  DeleteTaskFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/functions/deleteTask.handler
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: Tasks
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /api/tasks/{id}
+            Method: delete
